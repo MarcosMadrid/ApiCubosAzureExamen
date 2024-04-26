@@ -80,7 +80,13 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 app.UseOpenApi();
-app.UseSwaggerUI();
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint(
+        url: "/swagger/v1/swagger.json", name: "Api v1");
+
+    options.RoutePrefix = "";
+});
 
 app.UseHttpsRedirection();
 
